@@ -1,0 +1,43 @@
+--Para usuarios de Docker (local)
+
+--1) Conectarse al contenedor
+docker exec -it <id_contenedor> bash
+
+
+--2) Crear carpeta en el contenedor
+mkdir cargadatos
+
+--3) Desde otro terminal: copiar el archivo al contenedor. En lugar de "titanic.csv" pueden colocar la ruta completa
+docker cp titanic.csv <id_contenedor>:/cargadatos/titanic.csv
+ 
+
+--4) En el terminal de su contenedor (Docker). Ingresar a psql
+psql -U postgres
+
+--5) Crear la tabla (ejecutar script - CREATE TABLE).
+
+--6) Ejecutar el comando copy
+COPY TITANIC_RAW FROM 'cargadatos/titanic.csv' DELIMITERS ',' CSV;
+
+
+
+--Localmente
+
+--1) Copiar el archivo titanic.csv al disco local: D:/datos/titanic.csv
+
+--2) Crear la tabla
+
+--3) Ejecutar psql:
+psql -d postgres
+
+--4) Ejecutar el comando copy
+COPY TITANIC_RAW FROM 'D:/datos/titanic.csv' DELIMITERS ',' CSV;
+
+--Para usuarios desde DockerPlayground
+--1) Inicie su ambiente con: docker compose up -d
+--2) Ubique el archivo que desea copiar. Por ejemplo: titanic.csv que se encuentra en la carpeta de cargatos.
+--3) Ejecuten el comando
+sudo docker cp titanic.csv fiis-bd232-pgadmin-1:/var/lib/pgadmin/storage/admin_domain.com/titanic1.csv 
+--4) Utilicen la interfaz de PgAdmin para la copia (Import / Export Data)
+
+
