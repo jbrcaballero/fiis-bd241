@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: user1
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - mongo-data:/data/db
+
+  nosqlclient:
+    image: mongoclient/mongoclient
+    restart: always
+    ports:
+      - 3000:3000
+    environment:
+      MONGO_URL: mongodb://user1:password@mongo:27017
+    depends_on:
+      - mongo
+
+volumes:
+  mongo-data:
