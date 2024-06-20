@@ -27,3 +27,35 @@ docker compose up -d
 * **Maintenance database:** db1
 * **Username:** user1
 * **Password:** password
+
+### Para usar MongoDB
+
+Se ha tomando en cuenta también la configuración para MongoDB. para ello es necesario seguir estos pasos:
+
+1. En caso no lo haya hecho, ejecute los pasos 1. y 2. de la guía de Postgres.
+
+2. Ingrese a la carpeta correspondiente al a clase de NoSQL (s151-nosql)
+
+```
+cd s151-nosql
+```
+
+3. Inicie los contenedores. En este caso se tomará en cuenta el archivo docker-compose.yml de la carpeta del paso anterior. Esta instalación contiene tanto MongoDB (servidor) como MongoClient (cliente).
+
+```
+docker compose up -d
+```
+
+4. Una vez iniciados los servicios puede ingresar a https://localhost:3000 para acceder a MongoDBClient.
+
+5. En la parte superior derecha encontrará el botón **Connect**. Utilice los siguientes parámetros (observe que todos ellos los puede encontrar en su archivo de docker-compose):
+
+- Connection
+    - Host / Port: mongo
+    - Database Name: admin
+- Authentication
+    - Username: user1
+    - Password: password
+    - Authentication DB: admin
+
+6. Una vez que se encuentre configurada la conexión, puede acceder a la instancia de Mongo y ejecutar los comandos del tutorial ingresando a la opción Tools > Shell. 
